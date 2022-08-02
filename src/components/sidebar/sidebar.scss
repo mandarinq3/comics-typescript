@@ -1,0 +1,48 @@
+@use '../../styles-for-export/styles-for-export' as *;
+
+.aside-navi {
+    flex-grow: 2;
+}
+
+.aside-navi__title {
+    @include flex-XY-center;
+    @include shadow;
+    height: 45px;
+    color: $color_main;
+}
+
+
+.aside-navi-list__item {
+    width: 200px;
+    padding: 10px 15px;
+    @include shadow;
+    @include flex-Y-center;
+    justify-content: space-between;
+    margin: 5px 0px;
+    font-size: 20px;
+    &:hover{
+        box-shadow: 0px 6px 1px #bde0fa;
+        background-color: $color_main;
+        color: white;
+    }
+}
+
+.current{
+    box-shadow: 0px 6px 1px #bde0fa;
+    background-color: $color_main;
+    color: white!important;
+}
+
+.close:after{
+    content: '🗙';
+    width: 20px;
+    height: 20px;
+    border:1px solid white;
+    border-radius: 50%;
+    position: relative;
+    right: -10px;
+    line-height: 0;
+    @include flex-XY-center;
+    padding: 1px;
+    cursor:pointer;
+}

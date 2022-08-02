@@ -1,0 +1,44 @@
+@use '../../styles-for-export/styles-for-export' as *;
+
+.header{
+    background-color: $color_main;
+    padding: 5px 0px;
+    .row{
+        @include flex-Y-center;
+        justify-content: space-between;
+        
+    }
+    .col{
+        @include flex-Y-center;
+        input{
+            padding:0px 5px 0px 5px;
+            margin: 0px 5px 0px 0px;
+            border-radius: 5px;
+            width: 250px;
+            height: 30px;
+            outline: none;
+        }
+    }
+}
+
+
+
+.header-favorite{
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    @include flex-XY-center;
+    .fa-bookmark{
+        color: white;
+        font-size: 25px;
+    }
+}
+
+
+.header-logo{
+    img{
+        width: 60px;
+        height: 60px;
+    }
+}

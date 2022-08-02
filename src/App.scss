@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body,html{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+button,input,select{
+    border: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul,li{
+    list-style: none;
+}
+
+.container{
+    width: 1204px;
+    padding: 0px 50px;
+    margin: 0 auto;
+}
+
+.app-body{
+    display: flex;
+    width: 100%;
+}
+
+
+

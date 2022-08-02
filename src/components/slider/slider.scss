@@ -1,0 +1,19 @@
+@use '../../styles-for-export/styles-for-export'as *;
+
+article{
+   background-image: url('https://www.comicbasics.com/wp-content/uploads/2018/11/Most-Popular-Comic-Superheroes.jpg');
+   background-size:cover;
+   background-repeat: no-repeat;
+    height: 300px;
+    margin: 10px 0px;
+    @include flex-XY-center;
+    span{
+        color: black;
+        font-size: 3em;
+        box-shadow: 2px 2px 15px white;
+        padding: 10px 20px;
+        background-color: white;
+        border-radius: 5px;
+    }
+}
+

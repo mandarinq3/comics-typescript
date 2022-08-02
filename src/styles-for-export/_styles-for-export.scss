@@ -1,0 +1,22 @@
+$color_main: #61b7f8;
+$color_secondary:rgb(123, 254, 195);
+
+@mixin shadow{
+    box-shadow: 1px 1px 5px $color_main;
+}
+
+@mixin flex-XY-center{
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+@mixin flex-X-center{
+    display: flex;
+    justify-content: center;
+}
+
+@mixin flex-Y-center{
+    display: flex;
+    align-items: center;
+}
