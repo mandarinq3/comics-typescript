@@ -1,0 +1,67 @@
+@use '../../styles-for-export/styles-for-export' as *;
+
+.success-bg{
+    position: fixed;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.success{
+    background-color: white;
+    width: 500px;
+    height: 300px;
+    @include flex-Y-center;
+    flex-direction: column;
+    position: relative;
+    h2{
+        background-color: $color_main;
+        width: 100%;
+        text-align: center;
+        color: white;
+        padding: 5px 0px;
+    }
+}
+
+.success-close-btn{
+    background-color: red;
+    color: white;
+    position: absolute;
+    width: 50px;
+    height: 22.5px;
+    @include flex-XY-center;
+    right: 0;
+    top: -25px;
+}
+
+.success-icon-holder {
+    background-color: rgb(153, 255, 0);
+    width: 100%;
+    height: 50%;
+    @include flex-XY-center;
+}
+
+.success-icon {
+    width: 60px;
+    height: 60px;
+    border: 3px solid white;
+    color: white;
+    padding: 20px;
+    border-radius: 50%;
+    
+}
+
+.success-text{
+    font-size: 40px;
+    margin-top: 50px;
+    padding: 10px 0px;
+    text-transform: uppercase;
+    color: rgb(153, 255, 0);
+    width: 100%;
+    text-align: center;
+}

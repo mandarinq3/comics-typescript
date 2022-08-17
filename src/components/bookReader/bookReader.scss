@@ -1,0 +1,63 @@
+@use '../../styles-for-export//styles-for-export' as *;
+
+.book-reader {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    .document{
+        width: 100%;
+        @include flex-X-center;
+    }
+    .page{
+        @include flex-X-center;
+        margin: 0 auto;
+        width: 100%;
+        border-top: 1px dashed $color_main;
+        border-bottom: 1px dashed $color_main;
+        background-color: $color_main
+        
+    }
+}
+
+.page-control{
+    @include flex-Y-center;
+    justify-content: space-between;
+    width: 350px;
+    margin: 10px auto;
+}
+
+.page-control-screen{
+    font-size: 18px;
+    background-color: $color_main;
+    color: white;
+    height: 100%;
+    @include flex-XY-center;
+    padding : 0px 10px;
+    border-radius: 5px;
+    p{
+        background-color: white;
+        color: $color_main;
+        padding: 5px;
+        margin: 0px 10px;
+        width: 30px;
+        height: 30px;
+        @include flex-XY-center;
+        border-radius: 5px;
+    }
+}
+
+.page-control-btn {
+    color: white;
+    background-color: $color_main;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 30px;
+}
+.page-control-btn--prev {
+
+}
+.page-control-btn--next {
+
+}

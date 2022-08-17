@@ -1,0 +1,89 @@
+@use '../../../styles-for-export/styles-for-export' as *;
+
+.main-head{
+    @include flex-Y-center;
+    justify-content: flex-end;
+    .main-head-selects-holder{
+        display: flex;
+        align-items: center;
+    }
+    
+    label{
+        padding: 0px 10px;
+        margin: 5px 0px 5px 5px;
+        height: 45px;
+        text-transform: lowercase;
+        
+        @include flex-XY-center;
+        background-color:  $color_main;
+        color: white;
+        
+        
+
+        @media only screen and (max-width: 1070px)  {
+            font-size: 12px;
+        }  
+
+        @media only screen and (max-width: 650px)  {
+            height: 30px;
+            font-size: 10px;
+        } 
+
+        @media only screen and (max-width: 540px)  {
+            max-width: 300px;
+            height: 30px;
+            font-size: 10px;
+
+            -webkit-line-clamp:2;// кол-во строк которое будет показано, а все остальное будет скрыто и заменено на точки
+             display: -webkit-box;//старый вариан display:flex;
+            -webkit-box-orient: vertical; // старый вариант flex-direction: row;
+            overflow: hidden;// скрываем все что выходит из блока
+            text-overflow: ellipsis; // заменяет спратанный текст на точки
+            margin: 5px 0px 5px 5px;
+        } 
+
+        @media only screen and (max-width: 414px)  {
+            width: 70px;
+        }
+
+        @media only screen and (max-width: 375px)  {
+            width: 60px;
+        }
+
+        @media only screen and (max-width: 320px)  {
+            width: 50px;
+        }
+
+        
+    }
+}
+
+.main-head-select{
+    width: 100px;
+    height: 45px;
+    text-align: center;
+    outline: none;
+    border: 1px solid $color_main;
+    color: $color_main;
+
+    @media only screen and (max-width: 1070px)  {
+        width: 70px;
+    }
+    @media only screen and (max-width: 650px)  {
+        height: 30px;
+    }
+    @media only screen and (max-width: 414px)  {
+        width: 50px;
+    }
+
+    @media only screen and (max-width: 320px)  {
+        width: 45px;
+    }
+    
+}
+
+.main-head-select__option{
+    background-color: white;
+    color: $color_main;
+    padding-right: 10px;
+}

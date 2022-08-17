@@ -3,13 +3,16 @@
 .header{
     background-color: $color_main;
     padding: 5px 0px;
+    width: 100vw;
     .row{
         @include flex-Y-center;
         justify-content: space-between;
-        
     }
     .col{
         @include flex-Y-center;
+        @media only screen and (max-width: 375px)  {
+            justify-content: space-between;
+        }
         input{
             padding:0px 5px 0px 5px;
             margin: 0px 5px 0px 0px;
@@ -17,6 +20,12 @@
             width: 250px;
             height: 30px;
             outline: none;
+            @media only screen and (max-width: 768px)  {
+                width: 150px;
+            }
+            @media only screen and (max-width: 425px)  {
+                height: 20px;
+            }
         }
     }
 }
@@ -32,7 +41,27 @@
     .fa-bookmark{
         color: white;
         font-size: 25px;
+        @media only screen and (max-width: 425px)  {
+            font-size: 12px;
+        }
     }
+    @media only screen and (max-width: 425px)  {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.header-favorite__count{
+    background-color: rgb(110, 253, 110);
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    @include flex-XY-center;
+    font-size: 18px;
+    line-height: 0;
+    position: relative;
+    top: 15px;
 }
 
 
@@ -40,5 +69,9 @@
     img{
         width: 60px;
         height: 60px;
+        @media only screen and (max-width: 425px)  {
+            width: 40px;
+            height: 40px;
+        }
     }
 }

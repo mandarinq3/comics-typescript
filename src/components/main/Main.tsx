@@ -1,46 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import './main.scss';
 import { Card } from "./card/Card";
 import { RootState } from '../../store/store';
-import { useDispatch, useSelector } from "react-redux";
-import { nanoid } from 'nanoid'
+import { useSelector } from "react-redux";
 import { Loader } from '../loader/Loader';
-// import {setIsLast,setLibraryToRender,setDefaultSort} from '../../features/fetchSlice';
-import {filterProps} from "../../filter-select-props/filter-props";
+import Select from './select/Select';
 
 export const Main:React.FC=(props:any)=>{
     
-    const dispatch = useDispatch();
     const appState = useSelector((state:RootState)=>state);
-    
-//рендерит full library
-    const card = appState.fetch.libraryFull.map((book)=>{
-            return <Card key={book.id} publisher={book.publisher} name={book.name} year={book.year} img={book.img} alt={book.alt} />
-        })
-//-------------------------------------------------------------------------------------------------------------
+    let showNotFoundMsg = false;
 
-//создает селекты в мейн хеде: Чтобы добавить еще один то нужно перейти в файл filterProps.tsx и добавить там
-    const selects = filterProps.map((item)=>{
-        return <>
-        <label>{item.label}</label>
-        <select className="main-head-select">
-            {
-                item.options.map((option)=>{
-                    return <option className="main-head-select__option" value={option}>{option}</option>
-                })
-            }     
-        </select>
-        </>
-    })
-//-------------------------------------------------------------------------------------------------------------
+    // let card;
+
+    let card = appState.filterAndSort.libraryToRender.map((book)=>{
+    return <Card isPicked={book.isPicked} id={book.id} key={book.id} publisher={book.publisher} name={book.name} year={book.year} img={book.img} alt={book.alt} />
+})
+
+if(card.length===0 && appState.fetch.isLoadingDone){
+    showNotFoundMsg = true ;
+}else{
+    showNotFoundMsg = false ;
+}
 
     return(
         <main className="main">
+{/* ---------------------------------------------------- */}
             {!appState.fetch.isLoadingDone?null:
             <div className="main-head">
-                {selects}
+                <Select/>
             </div>
             }
+{/* ---------------------------------------------------- */}
+            { showNotFoundMsg===true ? <span className="not-found-msg"></span> : null  }
+{/* ---------------------------------------------------- */}
             <section className="main-body">
             {
             appState.fetch.isLoading?<Loader/>:<>
@@ -48,13 +41,11 @@ export const Main:React.FC=(props:any)=>{
             </>
             }
             </section>
-           
-            
- 
-            <div className="show-more-btn">
+{/* ---------------------------------------------------- */}
+            {/* <div className="show-more-btn">
                 <button >more</button>
-            </div>
-             
+            </div> */}
+{/* ---------------------------------------------------- */}            
         </main>
     )
 }

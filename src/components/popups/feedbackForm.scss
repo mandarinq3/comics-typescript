@@ -1,7 +1,7 @@
 @use '../../styles-for-export/styles-for-export' as *;
 
 .feedback-bg{
-    position: absolute;
+    position: fixed;
     background-color: rgba($color: #000000, $alpha: 0.4);
     width: 100vw;
     height: 100vh;

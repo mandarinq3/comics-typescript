@@ -1,63 +1,30 @@
 @use '../../styles-for-export/styles-for-export' as *;
 
-.main{
-    flex-grow: 4;
-}
-
-.main-head{
-    @include flex-Y-center;
-    justify-content: flex-end;
-    label{
-        padding: 0px 10px;
-        margin: 5px 0px 5px 5px;
-        height: 45px;
-        @include flex-XY-center;
-        background-color:  $color_main;
-        color: white;
-          
-    }
-}
-.main-head-select{
-    width: 100px;
-    height: 45px;
-    text-align: center;
-    outline: none;
-    border: 1px solid $color_main;
-    color: $color_main;
-    
-    
-}
-.main-head-select__option{
-    background-color: white;
-    color: $color_main;
-    padding-right: 10px;
-}
-
-
-
 .main-body{
     padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    align-items: center;
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     min-height: 350px;
-}
+    @media only screen and (max-width: 1224px)  {
 
-.show-more-btn{
-    margin: 10px 0px;
-    @include flex-X-center;
-    border-top: 1px solid $color_main;
-    padding: 20px 0px;
-    button{
-        background-color: $color_main;
-        @include shadow;
-        width: 250px;
-        height: 40px;
-        font-size: 20px;
-        color:white;
     }
 }
+
+// .show-more-btn{
+//     margin: 10px 0px;
+//     @include flex-X-center;
+//     border-top: 1px solid $color_main;
+//     padding: 20px 0px;
+//     button{
+//         background-color: $color_main;
+//         @include shadow;
+//         width: 250px;
+//         height: 40px;
+//         font-size: 20px;
+//         color:white;
+//     }
+// }
 
 .error-msg{
     @include flex-Y-center;
@@ -67,6 +34,18 @@
     text-align: center;
     margin: 0 auto;
     grid-column: 1 / 6;
+}
+
+.not-found-msg{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: -120px;
+    display: block;
+    width: 150px;
+    height: 150px;
+    background-image: url('../../../public/icons/notfound.png');
+    background-size: cover;
 }
 
 

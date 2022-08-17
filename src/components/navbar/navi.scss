@@ -3,22 +3,27 @@
 .navi {
     background-color:$color_main;
     border-top: 1px solid white;
+    color: white;
 }
 .navi-list {
     display: flex;
     justify-content: space-between;
-    height: 50px;
 }
 .navi-list__item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
+    padding: 10px 5px;
+    width: 130px;
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    @media only screen and (max-width: 484px)  {
+        font-size: 14px;
+    }
     &:first-child{
-        justify-content: left;
+       text-align: left;
     }
     &:last-child{
-        justify-content: right;
+       text-align: right;
     }
     a{
         color: white;

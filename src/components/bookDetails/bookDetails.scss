@@ -1,0 +1,267 @@
+  @use '../../styles-for-export/styles-for-export' as *;
+  
+  
+  .details-body{
+    display: grid;
+     grid-template-columns: 20% 80%;
+     grid-template-rows: 1fr;
+     gap: 0px;
+     color: $color_main;
+     margin: 20px 0px;
+     
+     @media only screen and (max-width: 1224px)  {
+        grid-template-columns: 25% 75%;
+     }
+     @media only screen and (max-width: 864px)  {
+        grid-template-columns: 30% 70%;
+     }
+     @media only screen and (max-width: 664px)  {
+        grid-template-columns: 40% 60%;
+     }
+     @media only screen and (max-width: 524px)  {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+     }
+     
+  }
+  
+  
+  
+.details-aside{
+    grid-row-start: 1;
+    grid-row-end: 1;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    display: flex;
+    flex-direction: column;
+    height: 450px;
+    @include shadow;
+    @media only screen and (max-width: 524px)  {
+        width: 300px;
+        height: 450px;
+        margin-bottom: 20px;
+     }
+    .aside-col--top {
+        height: 50%;
+        background-size: cover;
+    } 
+    .aside-col--middle {
+        height: 35%;
+        @include flex-XY-center;
+        flex-direction: column;
+        border-bottom: 1px dashed $color_main;
+        *{
+            padding: 10px 5px;
+        }
+    }
+    
+    
+    .aside-col--bottom {
+            height: 15%;
+            @include flex-XY-center;
+            .read-btn{
+                background-color: $color_main;
+                color: white;
+                padding: 5px 20px;
+                border-radius: 5px;
+            }
+    }
+}
+   
+  .details-main{
+     grid-row-start: 1;
+     grid-row-end: 2;
+     grid-column-start: 2;
+     grid-column-end: 2;
+     padding: 0px 10px;
+     .details-main-row--top{
+        background-color: $color_main;
+        color: white;
+        @include flex-XY-center;
+        padding: 10px 0px;
+        
+        h2{
+            @media only screen and (max-width: 524px)  {
+                font-size: 16px;
+             }
+        }
+     }
+     .details-main-row--bottom{
+        padding: 20px 10px;
+        span{
+            @media only screen and (max-width: 524px)  {
+                font-size: 14px;
+             }
+        }
+     }
+  }
+
+
+  .details-comments{
+    margin: 20px 0px;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: flex;
+    flex-direction: column;
+    .details-comments-row{
+        padding: 10px;
+        &:last-child{
+            margin: 40px 0px;
+            @include shadow;
+        }
+        
+        h3{ 
+            color: $color_main;
+        }
+    }
+
+
+    .details-comments-row__top{
+        height: 200px;
+        display: flex;
+        @include shadow;
+        margin-top: 10px;
+        @media only screen and (max-width: 524px)  {
+            justify-content: center;
+        }
+        
+
+        .msg-screen{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            height: 100%;
+
+            h5{
+                text-align: center;
+            }
+
+            button{
+                background-color: $color_main;
+                width: 200px;
+                height: 30px;
+                color: white;
+                border-radius: 5px;
+                
+            }
+        }
+
+        .details-comment-col{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+            .btn--switch{
+                background-color: white;
+                color: $color_main;
+                font-size: 12px;
+                margin-top: 10px ;
+            }
+            form{
+                width: 300px;
+                height: 80%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                *{
+                    border-radius: 5px;
+                }
+                textarea{
+                    margin: 5px 0px;
+                    padding: 5px;
+                    height: 75%;
+                    border: 1px solid $color_main;
+                }
+
+                input{
+                    margin: 5px 0px;
+                    height: 20%;
+                    border: 1px solid $color_main;
+                    text-align: center;
+                }
+                .btn{
+                    background-color: $color_main;
+                    color: white;
+                    height: 20%;
+                    margin: 5px 0px;
+                }
+            }
+        }       
+    }
+
+
+    .details-comments-row__bottom{
+        height: 700px;
+        overflow-y: auto;
+
+        .comment{
+            display: flex;
+            margin: 15px 0px;
+            border: 1px dashed $color_main;
+            @media only screen and (max-width: 524px)  {
+                font-size: 14px;
+                flex-direction: column;
+             }
+// ========================  
+            .comment-col--left{
+                width: 300px;
+                min-height:70px ;
+                display: flex;
+                flex-direction: column;
+                
+                .users-name{
+                    background-color: $color_main;
+                    text-align: center;
+                    color: white;
+                    padding: 3px;
+                   
+                }
+                .comment-date{
+                    text-align: center;
+                    @media only screen and (max-width: 524px)  {
+                        font-size: 12px;
+                        text-align: right;
+                        margin: 5px;
+                     }
+                }
+            }
+// ============================
+            .comment-col--right{
+                padding: 5px 25px;
+                @include flex-Y-center;
+                .users-comment{
+                    @media only screen and (max-width: 524px)  {
+                        font-size: 16px;
+                        width: 100%;
+                        padding: 10px;
+                        
+                     }
+                    font-style: italic;
+                    &::before{
+                        content: '\270F';
+                        margin-right: 10px;
+                        font-style: normal;
+                    }
+                }
+            } 
+// ============================
+        }
+
+    }
+  }
+
+.error-border{
+    border: 1px solid red !important;
+}
+
+.input-error{
+    font-size: 10px;
+    color: red;
+    height: 20px;
+    margin-top: -5px;
+    text-align: center;
+}

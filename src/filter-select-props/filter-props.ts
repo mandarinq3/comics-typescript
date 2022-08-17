@@ -3,18 +3,18 @@ import {filterPropsType} from '../types/types';
 
 export const filterProps: filterPropsType = [
     {
-        sortBy:'NAME',
-        label:'BY NAME',
+        sortBy:'name',
+        label:'ПО АЛФАВИТУ',
         options:['☰','A-Z','Z-A'],
     },
     {
-        sortBy:'YEAR',
-        label:'BY YEAR',
+        sortBy:'year',
+        label:'ПО ГОДАМ',
         options:['☰','new','old'],
     },
     {
-        sortBy:'ADDEDDATE',
-        label:'BY ADDED DATE',
+        sortBy:'id',
+        label:'ПО ДАТЕ ДОБАВЛЕНИЯ',
         options:['☰','latest','oldest']
     }
 ]
