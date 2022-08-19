@@ -4,7 +4,8 @@ import { nanoid } from "nanoid";
 
 export const Loader:React.FC=(props:any)=>{
     return(
-        <div key={nanoid()} className="lds-roller">
+        <div className="loader-container">
+            <div key={nanoid()} className="lds-roller">
             <div key={nanoid()}></div>
             <div key={nanoid()}></div>
             <div key={nanoid()}></div>
@@ -13,7 +14,9 @@ export const Loader:React.FC=(props:any)=>{
             <div key={nanoid()}></div>
             <div key={nanoid()}></div>
             <div key={nanoid()}></div>
+            </div>
         </div>
+        
     )
 }
 

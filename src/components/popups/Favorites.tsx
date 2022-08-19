@@ -27,11 +27,7 @@ export const Favorites:React.FC=(props:any)=>{
         let fromLocalStorage = JSON.parse(localStorage.getItem('favoriteBooks') as any)!=null ? JSON.parse(localStorage.getItem('favoriteBooks') as any) : [];//get
         let indexOfCurrentElement = fromLocalStorage.indexOf(currentId);
         
-        // if(indexOfCurrentElement<0){
-        //     fromLocalStorage.push(currentId);//push
-        // }else{
-            fromLocalStorage.splice(indexOfCurrentElement,1);
-        // }
+        fromLocalStorage.splice(indexOfCurrentElement,1); 
         
         localStorage.setItem('favoriteBooks',JSON.stringify(fromLocalStorage))//set
         
@@ -54,8 +50,7 @@ export const Favorites:React.FC=(props:any)=>{
         }) 
 
         localStorage.setItem('pickedBook',JSON.stringify(res));
-        
-        
+    
     }
 
     const listItem = pickedBooks.map((book)=>{
@@ -82,7 +77,7 @@ export const Favorites:React.FC=(props:any)=>{
                         }    
                         }
                     >
-                        <Link to="/book-details">details</Link>
+                        <Link to="/book-details">подробнее</Link>
                     </button>
                 <button 
                     data-id={book.id}
@@ -90,7 +85,7 @@ export const Favorites:React.FC=(props:any)=>{
                     onClick={(e)=>{
                         deleteFromFavorites(e);
                     }}
-                >delete</button>
+                >удалить</button>
                 </div>
                 </div>
             </li>

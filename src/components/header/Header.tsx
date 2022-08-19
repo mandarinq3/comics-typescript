@@ -11,12 +11,14 @@ import { RootState } from "../../store/store";
 import { Link } from "react-router-dom";
 
 
-export const Header:React.FC=(props:any)=>{
+export const Header:React.FC=()=>{
     const appState = useSelector((state:RootState)=>state)
     const dispatch = useDispatch();
-    const favoriteBtnRef:any = useRef();
+    const favoriteBtnRef:React.RefObject<HTMLDivElement> = useRef(null);
 
-    let fromLocalStorage = JSON.parse(localStorage.getItem('favoriteBooks') as any)!=null ? JSON.parse(localStorage.getItem('favoriteBooks') as any) : [];//get
+    let fromLocalStorage = JSON.parse(localStorage.getItem('favoriteBooks') as any)!=null 
+        ? JSON.parse(localStorage.getItem('favoriteBooks') as any) 
+        : [];//get
         
    
     useEffect(()=>{
@@ -63,7 +65,7 @@ export const Header:React.FC=(props:any)=>{
                         <input
                             id='inp'
                             type="search"
-                            placeholder="search books"
+                            placeholder="поиск..."
                             disabled={appState.general.isDetailsShown}
                             style={{
                                 visibility: appState.general.isDetailsShown ? 'hidden': 'visible' }}

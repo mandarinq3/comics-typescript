@@ -13,12 +13,12 @@
         margin: 5px 0px 5px 5px;
         height: 45px;
         text-transform: lowercase;
+        display: flex;
+        align-items: center;
         
         @include flex-XY-center;
         background-color:  $color_main;
-        color: white;
-        
-        
+        color: white;        
 
         @media only screen and (max-width: 1070px)  {
             font-size: 12px;
@@ -30,16 +30,7 @@
         } 
 
         @media only screen and (max-width: 540px)  {
-            max-width: 300px;
             height: 30px;
-            font-size: 10px;
-
-            -webkit-line-clamp:2;// кол-во строк которое будет показано, а все остальное будет скрыто и заменено на точки
-             display: -webkit-box;//старый вариан display:flex;
-            -webkit-box-orient: vertical; // старый вариант flex-direction: row;
-            overflow: hidden;// скрываем все что выходит из блока
-            text-overflow: ellipsis; // заменяет спратанный текст на точки
-            margin: 5px 0px 5px 5px;
         } 
 
         @media only screen and (max-width: 414px)  {

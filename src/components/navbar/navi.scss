@@ -7,24 +7,15 @@
 }
 .navi-list {
     display: flex;
-    justify-content: space-between;
 }
 .navi-list__item {
-    padding: 10px 5px;
-    width: 130px;
-    white-space:nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-    @media only screen and (max-width: 484px)  {
-        font-size: 14px;
-    }
-    &:first-child{
-       text-align: left;
-    }
-    &:last-child{
-       text-align: right;
-    }
+    border: 1px solid white;
+    margin: 10px 10px 10px 0px;
+    padding: 10px 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    @include flex-XY-center;
     a{
         color: white;
     }

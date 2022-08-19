@@ -8,7 +8,7 @@ article{
     margin: 10px 0px;
     @include flex-XY-center;
     span{
-        color: black;
+        color: $color_main;
         font-size: 3em;
         box-shadow: 2px 2px 15px white;
         padding: 10px 20px;

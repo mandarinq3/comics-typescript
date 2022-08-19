@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import './card.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
-import picholder from '../../../assets/picholder.jpg';
 import { useDispatch, useSelector } from "react-redux";
 import {RootState} from '../../../store/store';
 import { setLibraryToRender } from "../../../features/filterAndSortSlice";
@@ -85,10 +84,8 @@ export const Card=(props:ICardProps)=>{
         
     }
        
-    // const refo = React.createRef();
 
     return(
-                // <div className="card" style={{backgroundImage:`url(${picholder})`}}>
                     <div className="card" style={{backgroundImage:`url(${props.img})`}}>    
                     <div className="card-row ">
                         <h4 className="car-name">{props.name}</h4>
@@ -103,7 +100,7 @@ export const Card=(props:ICardProps)=>{
                                     setPickedBook(e);
                                 }}
                             >
-                                <Link to="/book-details">details</Link>
+                                <Link to="/book-details">подробнее</Link>
                             </button>
                             {props.isPicked ? 
                             <button 

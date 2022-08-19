@@ -37,7 +37,7 @@ export const filterAndSortMW = (store:any)=>(next:any)=>(action:any)=>{
 
         type digitSortDirection = 'maxfirst' | 'minfirst';
         type digitSortBy = 'id' | 'year';
-        type stringSortDirection = 'A-Z' | 'Z-A';
+        type stringSortDirection = 'А-Я' | 'Я-А';
         type stringSortBy = 'name';
 
         
@@ -60,7 +60,7 @@ let sortResult:any[];
 
     return (sortBy:stringSortBy,direction:stringSortDirection,libraryForSort:any)=>{
         let key=sortBy;
-        if(direction=='A-Z'){
+        if(direction==='А-Я'){
             if(libraryForSort.length>0){           
                 sortResult=libraryForSort.sort((a:any,b:any)=>{
                     if(b[key][0]>a[key][0]){
@@ -70,7 +70,7 @@ let sortResult:any[];
             }
         }
 
-        if(direction=='Z-A'){
+        if(direction==='Я-А'){
             if(libraryForSort.length>0){        
                 sortResult=libraryForSort.sort((a:any,b:any)=>{
                     if(b[key][0]<a[key][0]){
@@ -164,17 +164,17 @@ const digitTypeSort = () => {
                 //-------------name-----------------
                 if(selectProps.sortBy==='name'){
                     const cb=stringTypeSort();
-                    if(selectProps.sortDirection==='A-Z'){
-                        result=cb(selectProps.sortBy,'A-Z',lib);
+                    if(selectProps.sortDirection==='А-Я'){
+                        result=cb(selectProps.sortBy,'А-Я',lib);
                     }else{
-                        result=cb(selectProps.sortBy,'Z-A',lib);
+                        result=cb(selectProps.sortBy,'Я-А',lib);
                     }
                 }
                 //-------------id------------
                 if(selectProps.sortBy==='id'){
                     const cb=digitTypeSort();
                     
-                    if(selectProps.sortDirection==='latest'){
+                    if(selectProps.sortDirection==='новые'){
                         result=cb(selectProps.sortBy,'maxfirst',lib);
                     }
                     else{
@@ -185,7 +185,7 @@ const digitTypeSort = () => {
                 //-------------year------------
                 if(selectProps.sortBy==='year'){
                     const cb=digitTypeSort();
-                    if(selectProps.sortDirection==='new'){
+                    if(selectProps.sortDirection==='новые'){
                         result=cb(selectProps.sortBy,'maxfirst',lib);
                     }
                     else{
@@ -208,13 +208,13 @@ const digitTypeSort = () => {
 // ============================================================== 
     // if(action.type!=='refs/setRef' ){
         if(action.type==='filterAndSort/setLibraryToRender'){
-           console.log('"filterAndSort/setLibraryToRender"')
+
         if(pickedBooks.length>0){
             let dataCopy = JSON.parse(JSON.stringify(action.payload.body.data))
            
                 dataCopy.forEach((book:any)=>{
                     pickedBooks.forEach((id:number)=>{
-                        if(book.id==id){
+                        if(book.id===id){
                             book.isPicked = true;
                         }
                     })

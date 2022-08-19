@@ -1,5 +1,11 @@
 @use '../../styles-for-export/styles-for-export' as *;
 
+.loader-container{
+  width: 95vw;
+  display: flex;
+  justify-content: center;
+}
+
 .lds-roller {
     display: inline-block;
     position: relative;

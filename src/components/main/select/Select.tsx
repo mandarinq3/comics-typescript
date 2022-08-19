@@ -3,7 +3,6 @@ import './select.scss';
 import { RootState } from '../../../store/store';
 import { useDispatch, useSelector } from "react-redux";
 import {filterProps} from "../../../filter-select-props/filter-props";
-// import { setIsFirstRender } from "../../../features/fetchSlice";
 import { setLibraryToRender } from "../../../features/filterAndSortSlice";
 
 
@@ -28,10 +27,6 @@ const Select:React.FC=(props:any)=>{
 const selectHandler=(e:React.ChangeEvent<HTMLSelectElement>)=>{
 
     resetOtherSelects(e);
-    
-    // if(appState.fetch.isFirstRender===true){
-    //     dispatch(setIsFirstRender(false));
-    // } 
 
     dispatch(setLibraryToRender({
         headers:{skipMW:false},

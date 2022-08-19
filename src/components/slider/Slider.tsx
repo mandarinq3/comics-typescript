@@ -10,7 +10,7 @@ export const Slider:React.FC=(props:any)=>{
     return(
         <article>
             <span>
-                Lorem ipsum dolor sit amet.
+                COMICS ONLINE
             </span>
         </article>
     )

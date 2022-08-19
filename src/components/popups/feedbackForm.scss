@@ -15,10 +15,11 @@
 .feedback-form{
     background-color: white;
     width: 500px;
-    height: 300px;
-    @include flex-XY-center;
+    min-height: 300px;
+    @include flex-Y-center;
     flex-direction: column;
     position: relative;
+    padding-bottom: 20px;
     h2{
         background-color: $color_main;
         width: 100%;
@@ -39,25 +40,29 @@
     top: -25px;
 }
 
-.input {
-    outline: none;
-    padding: 5px;
-    margin: 20px 0px 0px 0px;
-    border: 1px solid $color_main;
-    text-align: center;
+.inputs-holder{
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .input {
+        outline: none;
+        padding: 5px;
+        margin: 20px 0px 0px 0px;
+        border: 1px solid $color_main;
+        text-align: center;
+    }
+
 }
 
-.phone-exm {
-    margin: 5px 0px 30px 60px;
-    font-size: 10px;
-    color: $color_main;
-    
-}
+
+
 .feedback-send-btn {
     background-color: $color_main;
     width: 100px;
     height: 30px;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     
 }

@@ -63,12 +63,8 @@
     content: '×';
     width: 20px;
     height: 20px;
-    border:1px solid white;
-    border-radius: 50%;
     position: relative;
     right: -10px;
-    line-height: 0;
     @include flex-XY-center;
-    padding: 1px;
     cursor:pointer;
 }

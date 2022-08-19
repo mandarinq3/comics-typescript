@@ -6,23 +6,48 @@ import { setIsDetailsShown } from "../../features/generalSlice";
 import { nanoid } from "nanoid";
 import { NewForm } from "./NewForm";
 import { setUserAndToken } from "../../features/authSlice";
-import { debug } from "console";
+
+interface IPickedBook {
+    id: number;
+    publisher: string;
+    name: string;
+    year: number;
+    img: string;
+    alt: string;
+    file:string;
+    description:string;     
+}
+
+interface ICmcsData {
+    user: string | null,
+    token:string | null,    
+}
+
+interface IShowFormOptions {
+    showCommentForm: boolean;
+    showLoginForm: boolean;
+    showRegisterForm: boolean;
+    showMsgScreen: boolean;
+}
+
+export const BookDetails:React.FC=()=>{
 
 
-export const BookDetails:React.FC=(props:any)=>{
 
  const appState=useSelector((state:RootState)=>state);
 
  const dispatch = useDispatch();
 
- const [pickedBook, setPickedBook] = useState(
+    
+
+ const [pickedBook, setPickedBook] = React.useState<IPickedBook>(
     JSON.parse(localStorage.getItem('pickedBook') as any) != null 
   ? JSON.parse(localStorage.getItem('pickedBook') as any) 
   : {}
   );
 
- const [cmcsData,setCmcsData] = useState(
-    JSON.parse(localStorage.getItem('cmcs_data') as any) != null 
+ const [cmcsData,setCmcsData] = React.useState<ICmcsData>(
+        JSON.parse(localStorage.getItem('cmcs_data') as any) != null 
       ? JSON.parse(localStorage.getItem('cmcs_data') as any) 
       : {
             user:null,
@@ -30,31 +55,21 @@ export const BookDetails:React.FC=(props:any)=>{
         }
     );
 
-    // dispatch(setUserAndToken({
-    //     headers:{skipMW:true},
-    //     body:{
-    //       data:{
-    //         user:cmcsData.user,
-    //         token:cmcsData.token,
-    //       }
-    //     }
-    //   }));
+const [bookComments, setBookComments] = useState([]);
 
- const [bookComments, setBookComments]=useState([]) as any;
-    
- const [showFormOptions, setShowFormOptions]=useState({
+const [showFormOptions, setShowFormOptions]=React.useState<IShowFormOptions>({
     showCommentForm: cmcsData.token===null ? false : true,
     showLoginForm:false,
     showRegisterForm:false,
     showMsgScreen: cmcsData.token===null ? true : false ,
  });
 
- const [emailError , setEmailError] = useState('');
- const [passwordError, setPasswordError] = useState('');
- const [confirmPasswordError, setConfirmPasswordError] = useState('');
+ const [emailError , setEmailError] = React.useState<string>();
+ const [passwordError, setPasswordError] = React.useState<string>();
+ const [confirmPasswordError, setConfirmPasswordError] = React.useState<string>();
 
 
-const getAndSetAllComments = ()=>{
+const getAndSetAllComments = () : void => {
     fetch(`https://comics-9c403-default-rtdb.europe-west1.firebasedatabase.app/library/${pickedBook.id}.json`,
     {
     method:"GET",
@@ -68,21 +83,18 @@ const getAndSetAllComments = ()=>{
     })
 
     .then((data)=>{   
-        setBookComments(data.comments!==undefined?data.comments:[]);
+        setBookComments( data.comments!==undefined ? data.comments : []);
     })
 }
-
-
-
-
 
  const commentHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
 
     const form = e.target as HTMLFormElement;
     const textareaInput = form.elements[0] as HTMLInputElement;
-    const text = textareaInput.value;
-    const [...bookCommentsCopy] = bookComments;
- 
+    const text:string = textareaInput.value;
+
+    let [...bookCommentsCopy] : any  = bookComments ? bookComments  : [];
+    
     if(textareaInput.value!==''){
 
         let newComment = {
@@ -115,13 +127,14 @@ const getAndSetAllComments = ()=>{
     }
 }
 
+
  const loginHandler = (e: React.FormEvent<HTMLFormElement>) =>{
     
     const form = e.target as HTMLFormElement;
     const emailInput = form.elements[0] as HTMLInputElement;
-    const passwordInput = form.elements[1] as  HTMLInputElement ;
-    const email = emailInput.value;
-    const password = passwordInput.value;
+    const passwordInput = form.elements[1] as HTMLInputElement;
+    const email:string = emailInput.value;
+    const password:string = passwordInput.value;
 
     fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAzitYqzLboH0ImVFzG6uljY0fcgIfCVt0`,{
         method:'POST',
@@ -133,7 +146,6 @@ const getAndSetAllComments = ()=>{
             
             if(!data.hasOwnProperty('error')){
                 // ..... success
-                console.log('succes');
                 setEmailError('');
                 setPasswordError('');
 
@@ -145,7 +157,7 @@ const getAndSetAllComments = ()=>{
                     }}
                 }));
 
-                localStorage.setItem('cmcs_data',JSON.stringify({
+                localStorage.setItem('cmcs_data', JSON.stringify({
                     user:data.email,
                     token:data.idToken
                 }));
@@ -167,13 +179,13 @@ const getAndSetAllComments = ()=>{
             }
             else{
                 //.......error
-                if(data.error.message==='EMAIL_NOT_FOUND'){
+                if(data.error.message===process.env.REACT_APP_EMAIL_NOT_FOUND){
                     //email error
                     setEmailError('пользователь не найден');
                     setPasswordError('');
                 }
 
-                if(data.error.message==='INVALID_PASSWORD'){
+                if(data.error.message===process.env.REACT_APP_INVALID_PASSWORD){
                     //password error
                     setEmailError('');
                     setPasswordError('неверный пароль');
@@ -201,7 +213,9 @@ const registerHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
     setConfirmPasswordError('');
 
     if(password!==confirmPassword){
-        setConfirmPasswordError('пароли не совпадают');
+          
+            setConfirmPasswordError('пароли не совпадают');
+        
         return
     }else{
         setConfirmPasswordError('');
@@ -244,9 +258,10 @@ const registerHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
 
                     showSuccessPop();             
                 }
+                
                 else{
                     //.......errors
-                    if(data.error.message==='EMAIL_EXISTS'){                        
+                    if(data.error.message===process.env.REACT_APP_EMAIL_EXISTS){                        
                         //email error
                         setEmailError('пользователь уже зарегестрирован');
                         setPasswordError('');
@@ -254,14 +269,14 @@ const registerHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
 
                     }
 
-                    if(data.error.message==='WEAK_PASSWORD : Password should be at least 6 characters'){                   
+                    if(data.error.message===process.env.REACT_APP_WEAK_PASSWORD){                   
                         //email error
                         setEmailError('');
                         setPasswordError('короткий пароль. минимум 6 символов');
                         setConfirmPasswordError('');
                     }
 
-                    if(data.error.message==='INVALID_EMAIL'){
+                    if(data.error.message===process.env.REACT_APP_INVALID_EMAIL){
                         setEmailError('некоректный email');
                         setPasswordError('');
                         setConfirmPasswordError('');
@@ -274,16 +289,13 @@ const registerHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
     }
 }
 
-const showSuccessPop = ()=>{
+const showSuccessPop = () : void =>{
     appState.refs.refs.succesRef.style.display='flex';   
   }
 
-// console.log();
-
-
 
 //================== generate html comments===========
-const comments = bookComments.map((comment:any)=>{
+const comments = bookComments.map((comment:{id:string,user:string,date:string,text:string})=>{
     return <div key={comment.id} className="comment">
     <div className="comment-col--left">
     <span className="users-name">{comment.user}</span>
@@ -301,48 +313,24 @@ useEffect(()=>{
     
         dispatch(setIsDetailsShown(
             {
-            headers:{skipMW:true},
-            body:{data:true}
+                headers:{skipMW:true},
+                body:{data:true}
             }
             ))
         getAndSetAllComments();
-    
-        // if(appState.auth.token!==null){
-    
-        //     setShowFormOptions({
-        //         showCommentForm: true,
-        //         showLoginForm:false,
-        //         showRegisterForm:false,
-        //         showMsgScreen:false,
-        //     })
-    
-        // }else{
-        //     setShowFormOptions({
-        //         showCommentForm: false,
-        //         showLoginForm:false,
-        //         showRegisterForm:false,
-        //         showMsgScreen:true,
-        //     })
-        // }
-    
+        
     // --------------did unmount------------
     return ()=>{
+
         dispatch(setIsDetailsShown(
             {
             headers:{skipMW:true},
             body:{data:false}
             }
-            ))
-            // setShowFormOptions({
-            //     showCommentForm: false,
-            //     showLoginForm:false,
-            //     showRegisterForm:false,
-            //     showMsgScreen:true,
-            // })
-        } 
-    },[
-        // showFormOptions.showCommentForm, appState.auth.token
-    ])
+            )) 
+        }
+
+    },[])
     
     return(
         <div className="details">
@@ -450,11 +438,11 @@ useEffect(()=>{
                             handler={registerHandler}
                             content={
                                 <>
-                                <input type="email" placeholder="email" />
+                                <input required type="email" placeholder="email" />
                                 <p className="input-error">{emailError}</p>
-                                <input type="password" placeholder="пароль" />
+                                <input required type="password" placeholder="пароль" />
                                 <p className="input-error">{passwordError}</p>
-                                <input type="password" placeholder="подтвердите пароль"/>
+                                <input required type="password" placeholder="подтвердите пароль"/>
                                 <p className="input-error">{confirmPasswordError}</p>
                                 </>
                             }
@@ -510,9 +498,6 @@ useEffect(()=>{
             </div>
         </div>
 {/* --------------------------------------- */}
-
-
-
 
         </div>
         </div> 

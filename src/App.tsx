@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useRef, useState } from 'react';
+import React, {useEffect} from 'react';
 import './App.scss';  
 import { Slider } from './components/slider/Slider';
 import { Sidebar } from './components/sidebar/Sidebar';
@@ -12,7 +12,6 @@ import {getFullLibrary,getFullLibrary_success,getFullLibrary_error} from './feat
 import { setLibraryToRender } from "./features/filterAndSortSlice";
 import { Favorites } from './components/popups/Favorites';
 import { BookDetails } from './components/bookDetails/BookDetails';
-import { BookReader } from './components/bookReader/BookReader';
 import {Routes,Route} from 'react-router-dom';
 import { Success } from './components/popups/Succes';
 
@@ -22,8 +21,7 @@ import { Success } from './components/popups/Succes';
 
 function App() {
 
-  const dispatch=useDispatch();
-  const appBodyRef:any = useRef();
+const dispatch=useDispatch();
 
  useEffect(()=>{
   fetch('https://comics-9c403-default-rtdb.europe-west1.firebasedatabase.app/library.json')
@@ -70,13 +68,12 @@ function App() {
     <div className="App">
       <Header />
           <Navi/>
-          {/* <Slider/> */}
+          <Slider/>
           <div className="container" >
               <div className='app-body' data-picked=''>
                 <Routes>
                   <Route path="/" element={<><Sidebar/><Main/></>} />
                   <Route path="/book-details" element={<BookDetails/>}/>
-                  <Route path="/book-reader" element={<BookReader/>}/>
                 </Routes>
               </div>
           </div>

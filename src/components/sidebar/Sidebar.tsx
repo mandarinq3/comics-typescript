@@ -1,11 +1,9 @@
-import React, { Ref, useRef, useState } from "react";
+import React, { useState } from "react";
 import './sidebar.scss';
 import { RootState } from '../../store/store';
 import { useSelector } from "react-redux";
 import {useDispatch} from 'react-redux';
 import { setLibraryToRender } from "../../features/filterAndSortSlice";
-
-// import {setIsFirstRender} from '../../features/fetchSlice';
 
 
 //нужно сделать массив из выбранных издателей сделать stringify и назначить в качестве data атррибута UL. а если не выбран никто то добавить All а если есть то убрать
@@ -114,7 +112,7 @@ export const Sidebar:React.FC=(props:any)=>{
         >
             {!appState.fetch.isLoadingDone?null:
             <nav className="aside-navi">
-                <h3 className="aside-navi__title">publishers</h3>
+                <h3 className="aside-navi__title">Издательство</h3>
                 <ul className="aside-navi__list" >
                     <li 
                     data-id="All" 
@@ -122,7 +120,7 @@ export const Sidebar:React.FC=(props:any)=>{
                     onClick={(event)=>{
                             publishersHandler(event);
                     }} 
-                    >All</li>
+                    >Все</li>
                     {lItem}
                 </ul>
             </nav>
